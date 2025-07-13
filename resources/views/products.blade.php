@@ -9,10 +9,11 @@
             </flux:modal.trigger>
         </div>
 
+        <livewire:greeter>
+
         <!-- Modal para crear producto -->
-        <flux:modal name="product-create" class="w-full" >
-            @livewire('product-create')
-        </flux:modal>
+       
+
 
         <!-- Lista de productos -->
         <div class="flex-1">

@@ -15,9 +15,7 @@ class ProductController extends Controller
     }
 
     public function findAll(){
-        $products = Product::where([
-            ['deleted','=',0]
-        ])->paginate(15);
+        $products = Product::where("deleted",0)->orderBy('created_at','ASC')->paginate(15);
         return $products;
     }
 }

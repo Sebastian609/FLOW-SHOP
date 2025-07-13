@@ -12,7 +12,7 @@
                 <div>
                     <h2 class="mb-6 text-sm font-semibold text-gray-900 uppercase dark:text-white">Quick Links</h2>
                     <ul class="text-gray-500 dark:text-gray-400 font-medium">
-                        <li class="mb-4"><a href="#" class="hover:underline">Home</a></li>
+                        <li class="mb-4"><a href="{{ route('shop') }}" class="hover:underline">Shop</a></li>
                         <li class="mb-4"><a href="#" class="hover:underline">Products</a></li>
                         <li class="mb-4"><a href="#" class="hover:underline">About Us</a></li>
                         <li><a href="#" class="hover:underline">Contact</a></li>

@@ -6,8 +6,9 @@ use Livewire\Component;
 use App\Models\Product;
 use Illuminate\Support\Str;
 
-class ProductCreate extends Component
+class ProductEdit extends Component
 {
+    public $product;
     public $name, $price, $discount_price, $description;
 
     protected $rules = [
@@ -17,30 +18,34 @@ class ProductCreate extends Component
         'description' => 'nullable|string',
     ];
 
+    public function mount($productId)
+    {
+        $this->product = Product::findOrFail($productId);
+        $this->name = $this->product->name;
+        $this->price = $this->product->price;
+        $this->discount_price = $this->product->discount_price;
+        $this->description = $this->product->description;
+    }
+
     public function save()
     {
         $this->validate();
 
-        Product::create([
+        $this->product->update([
             'name' => $this->name,
             'slug' => Str::slug($this->name),
             'price' => $this->price,
             'discount_price' => $this->discount_price,
             'description' => $this->description,
-            'active' => true,
-            'deleted' => false,
         ]);
 
-        // Limpiar los campos
-        $this->reset();
-
-        // Emitir evento o cerrar modal
-        $this->dispatch('close-modal', name: 'product-create');
-        $this->dispatch('product-created');
+        $this->dispatch('close-modal', 'product-edit');
+        $this->dispatch('product-updated');
+       
     }
 
     public function render()
     {
-        return view('livewire.product-create');
+        return view('livewire.product-edit');
     }
-}
+} 
