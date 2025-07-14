@@ -8,13 +8,6 @@
                 <flux:button variant="primary">Crear producto</flux:button>
             </flux:modal.trigger>
         </div>
-
-        <livewire:greeter>
-
-        <!-- Modal para crear producto -->
-       
-
-
         <!-- Lista de productos -->
         <div class="flex-1">
             @livewire('list-products')

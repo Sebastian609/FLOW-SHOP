@@ -11,7 +11,7 @@ class ListProducts extends Component
 {
     use WithPagination;
     public $newProduct;
-    public $name, $price, $discount_price, $description;
+    public $name, $price, $discount_price, $description, $id;
 
 
     public $sortBy = 'created_at';
@@ -60,12 +60,13 @@ class ListProducts extends Component
         $this->product = Product::findOrFail($productId);
         $this->name = $this->product->name;
         $this->price = $this->product->price;
+        $this->id = $productId;
         $this->discount_price = $this->product->discount_price;
         $this->description = $this->product->description;
     }
 
-    public function update($id){
-        $product = Product::find($id);
+    public function update(){
+        $product = Product::find($this->id);
         $product->name = $this->name;
         $product->price = $this->price;
         $product->discount_price = $this->discount_price;

@@ -31,7 +31,7 @@
                         Producto
                     </th>
                     <th class="px-6 py-3 text-left text-xs font-medium text-gray-500 dark:text-gray-400 uppercase tracking-wider cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-700" wire:click="sort('name')">
-                        Nombre
+                        Descripción
                         @if($sortBy === 'name')
                             <span class="ml-1">{{ $sortDirection === 'asc' ? '↑' : '↓' }}</span>
                         @endif
@@ -79,7 +79,7 @@
                             </div>
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
-                            {{ $product->name }}
+                            {{ $product->description }}
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-900 dark:text-white">
                             @if($product->discount_price && $product->discount_price < $product->price)
@@ -101,7 +101,7 @@
                         </td>
                         <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
                             <div class="flex space-x-2">
-                                <flux:modal.trigger name="product-edit-{{ $product->id }}">
+                                <flux:modal.trigger name="product-edit">
                                     <button class="text-blue-600 hover:text-blue-900 dark:text-blue-400 dark:hover:text-blue-300" wire:click="showUpdate({{$product->id}})" title="Editar">
                                         <svg class="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z"></path>
@@ -126,34 +126,29 @@
         {{ $this->products->links() }}
     </div>
 
-    <!-- Modales para editar productos -->
-    @foreach($this->products as $product)
-        <flux:modal name="product-edit-{{ $product->id }}" class="w-full" 
-                   x-data
-                   @close-modal.window="if ($event.detail.name === 'product-edit-{{ $product->id }}') $dispatch('close')">
-           
-                   <form wire:submit.prevent="update({{$product->id}})" class="space-y-6">
-                    <div>
-                        <flux:heading size="lg">Editar Producto</flux:heading>
-                        <flux:text class="mt-2">Modifica los datos del producto.</flux:text>
-                    </div>
-                
-                    <flux:input label="Nombre" placeholder="Nombre" wire:model.defer="name" />
-                
-                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
-                        <flux:input label="Precio" placeholder="Precio" type="number" wire:model.defer="price" />
-                        <flux:input label="Precio Descuento" placeholder="Precio Descuento" type="number" wire:model.defer="discount_price" />
-                    </div>
-                    
-                    <flux:textarea label="Descripción" placeholder="Detalles sobre el producto" wire:model.defer="description" />
-                    
-                    <div class="flex gap-3">
-                        <flux:modal.close>
-                            <flux:button variant="filled" class="flex-1">Cancelar</flux:button>
-                        </flux:modal.close>
-                        <flux:button variant="primary" class="flex-1" type="submit">Guardar Cambios</flux:button>
-                    </div>
-                </form> 
-        </flux:modal>
-    @endforeach
+    <flux:modal name="product-edit" class="w-full">
+
+        <form wire:submit.prevent="update" class="space-y-6">
+         <div>
+             <flux:heading size="lg">Editar Producto</flux:heading>
+             <flux:text class="mt-2">Modifica los datos del producto.</flux:text>
+         </div>
+     
+         <flux:input label="Nombre" placeholder="Nombre" wire:model.defer="name" />
+     
+         <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+             <flux:input label="Precio" placeholder="Precio" type="number" wire:model.defer="price" />
+             <flux:input label="Precio Descuento" placeholder="Precio Descuento" type="number" wire:model.defer="discount_price" />
+         </div>
+         
+         <flux:textarea label="Descripción" placeholder="Detalles sobre el producto" wire:model.defer="description" />
+         
+         <div class="flex gap-3">
+             <flux:modal.close>
+                 <flux:button variant="filled" class="flex-1">Cancelar</flux:button>
+             </flux:modal.close>
+             <flux:button variant="primary" class="flex-1" type="submit">Guardar Cambios</flux:button>
+         </div>
+     </form> 
+</flux:modal>
 </div>
