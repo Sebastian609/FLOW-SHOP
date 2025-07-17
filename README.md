@@ -191,9 +191,9 @@ Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para
 
 ## 📞 Contacto
 
-- **Desarrollador**: [Tu Nombre]
-- **Email**: tu-email@ejemplo.com
-- **GitHub**: [@tu-usuario](https://github.com/tu-usuario)
+- **Desarrollador**: SEBASTIAN DOMINGO VILLAR SEGURA
+- **Email**: sebavillar2110@gmail.com
+- **GitHub**: [@Sebastian609](https://github.com/Sebastian609)
 
 ---
 
