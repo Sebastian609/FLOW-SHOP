@@ -146,7 +146,7 @@
                 </li>
                 
 
-                @foreach (explode(substr(url()->current(),22,100),"/") as $item)
+                @foreach (request()->segments() as $item)
                 <li>
                     <div class="flex items-center">
                         <svg class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1" aria-hidden="true"
@@ -155,7 +155,7 @@
                                 d="m1 9 4-4-4-4" />
                         </svg>
                         <a href="#"
-                            class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">{{}}</a>
+                            class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white">{{ $item }}</a>
                     </div>
                 </li>
                 @endforeach
